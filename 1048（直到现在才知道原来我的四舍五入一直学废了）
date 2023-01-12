@@ -1,0 +1,21 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+//还是在这里再回顾一下，round四舍五入是变成了double，全部是在整数部分了，如果要保留到多少位，需要有
+//round（x*10的次方）/（10的次方）或者是（int）（x*10的次方加0.5）/10的次方。
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	double sum_money=0;
+	int month = 12;
+	int i;
+	double month_money;
+	for (i = 1; i <= 12; i++)
+	{
+		scanf("%lf", &month_money);
+		sum_money += month_money;
+	}
+	double aver_money =sum_money / 12.0;
+	printf("$%.2lf\n",round(aver_money*100)/100.0 );
+	return 0;
+}
