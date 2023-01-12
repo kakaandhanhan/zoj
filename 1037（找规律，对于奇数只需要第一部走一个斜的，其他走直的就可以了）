@@ -1,0 +1,27 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int scene_number;
+	int m, n;
+	scanf("%d", &scene_number);
+	int i;
+	double p = sqrt(2) - 1;
+	for (i = 1; i <= scene_number; i++)
+	{
+		scanf("%d %d", &m, &n);
+		printf("Scenario #%d:\n", i);
+		if ((m % 2) == 0 || (n % 2 == 0))
+		{
+			printf("%.2f\n", (float)m * n);
+		}
+		else
+		{
+			printf("%.2f\n", m * n + p);
+		}
+		printf("\n");
+	}
+	return 0;
+}
