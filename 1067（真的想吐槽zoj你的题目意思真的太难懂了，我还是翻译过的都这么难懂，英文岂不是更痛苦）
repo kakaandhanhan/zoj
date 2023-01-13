@@ -1,0 +1,45 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+#include <math.h>
+#define N 30
+int  getmin_distance(int small_r[], int small_g[], int small_b[], int n,int map_r,int map_g,int map_b )
+{
+	double min_distance;
+	min_distance = pow(small_r[0] - map_r, 2) + pow(small_g[0] - map_g, 2) + pow(small_b[0] - map_b, 2);
+	int k=0;
+	int i;
+	for (i = 1; i < n; i++)
+	{
+		double temp_distance;
+		temp_distance= pow(small_r[i] - map_r, 2) + pow(small_g[i] - map_g, 2) + pow(small_b[i] - map_b, 2);
+		if (temp_distance < min_distance)
+		{
+			min_distance = temp_distance;
+			k = i;
+		}
+	}
+	return k;
+}
+int main()
+{
+	int small_r[N];
+	int small_g[N];
+	int small_b[N];
+	int i;
+	for (i = 0; i < 16; i++)
+	{
+		scanf("%d %d %d", &small_r[i], &small_g[i], &small_b[i]);
+	}
+	int map_r;
+	int map_g;
+	int map_b;
+	while (scanf("%d %d %d", &map_r, &map_g, &map_b) && (map_r != -1 || map_g != -1 || map_b != -1))
+	{
+		int k;
+		k=getmin_distance(small_r, small_g, small_b, 16, map_r, map_g, map_b);
+		printf("(%d,%d,%d) maps to (%d,%d,%d)\n", map_r, map_g, map_b, small_r[k], small_g[k], small_b[k]);
+	}
+
+	return 0;
+}
