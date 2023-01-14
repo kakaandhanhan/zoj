@@ -1,0 +1,29 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char a[1001];
+	while (scanf("%s", a) && a != "0")
+	{
+		int sum = 0;
+		int i;
+		for (i = 0; a[i] != '\0'; i++)
+		{
+			sum += a[i] - '0';
+		}
+		while (sum / 10 != 0)
+		{
+			int t = sum;
+			sum = 0;
+			while (t != 0)
+			{
+				sum += t % 10;
+				t /= 10;
+			}
+		}
+		printf("%d\n", sum);
+	}
+	return 0;
+}
