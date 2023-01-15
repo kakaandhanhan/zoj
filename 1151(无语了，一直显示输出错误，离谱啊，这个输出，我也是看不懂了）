@@ -1,0 +1,55 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+#include <string.h>
+#define N 10000
+void trans(int j, int i, char str[])
+{
+	int a;
+	int temp;
+	for (a = j; a <= (i+j) / 2; a++)
+	{
+		temp = str[a];
+		str[a] = str[i + j - a];
+		str[i + j - a] = temp;
+	}
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	
+	getchar();
+	while(n--)
+	{
+		
+		int t;
+		scanf("%d", &t);
+		getchar();
+		int m;
+		char str[N]="0";
+		for (m = 1; m <= t; m++)
+		{
+			gets(str);
+			int len;
+			len = strlen(str);
+			int i = 0;
+			int j = 0;
+			for (i = 0; i < len; i++)
+			{
+				if (str[i] == ' ')
+				{
+					trans(j, i - 1, str);
+					j = i + 1;
+				}
+			}
+			trans(j, len - 1, str);
+			printf("%s\n", str);
+			
+		}
+		
+	}
+	
+	
+	return 0;
+}
