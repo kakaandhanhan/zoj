@@ -1,0 +1,68 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+#include <string.h>
+#define N 100
+int   transplus(char array)
+{
+	int result;
+	if (array >= 'a' && array <= 'z')
+	{
+		result = array - 'a'+10 ;
+	}
+	else if (array >= '0' && array <= '9')
+	{
+		result = array - '0';
+	}
+	return result;
+}
+char str[21] = "0123456789abcdefghij";
+int main()
+{
+	char first[N + 1];
+	char second[N + 1];
+	int  result[10 * N + 1];
+	memset(first, 0, sizeof(first));
+	memset(second, 0, sizeof(second));
+	memset(result, 0, sizeof(result));
+	while (scanf("%s %s", first, second) != EOF)
+	{
+		
+		int len_first;
+		int len_second;
+		len_first = strlen(first);
+		len_second = strlen(second);
+		int i, j;
+		int t = 0;
+		for (i=0,j=0;i<len_first||j<len_second;i++,j++,t++)
+		{
+			
+			if (i<len_first)
+			{
+				result[t] += transplus(first[len_first-1-i]);
+			}
+			 if  (j<len_second)
+			{
+				result[t] += transplus(second[len_second-1-j]);
+			}
+			if (result[t] >= 20 )
+			{
+				
+					result[t + 1] += result[t]/20 ;
+					result[t] = result[t] % 20;
+				
+			}
+		}
+		if (result[t] != 0)
+		{
+			printf("%c", str[result[t]]);
+		}
+		for (i = t - 1; i >= 0; i--)
+		{
+			printf("%c", str[result[i]]);
+		}
+		printf("\n");
+
+	}
+	return 0;
+}
