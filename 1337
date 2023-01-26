@@ -1,0 +1,59 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+#include <math.h>
+int gcd(int x, int y)
+{
+	int temp;
+	while (y != 0)
+	{
+		temp = x % y;
+		x = y;
+		y = temp;
+		
+	}
+	return x;
+}
+int main()
+{
+	int N;
+	while (scanf("%d", &N))
+	{
+		if (N == 0)
+		{
+			break;
+		}
+		int i;
+		int a[50];
+		for (i = 0; i < N; i++)
+		{
+			scanf("%d", &a[i]);
+		}
+		int all;
+		all = N * (N - 1) / 2;
+		int m, n;
+		int count = 0;
+		for (m = 0; m < N - 1; m++)
+		{
+			for (n = m + 1; n < N; n++)
+			{
+				if (gcd(a[m], a[n]) == 1)
+				{
+					count++;
+				}
+				
+			}
+		}
+		if (count != 0)
+		{
+			double pi;
+			pi = sqrt(6.0 * (double)all / count);
+			printf("%.6lf\n", pi);
+		}
+		else
+		{
+			printf("No estimate for this data set.\n");
+		}
+	}
+	return 0;
+}
