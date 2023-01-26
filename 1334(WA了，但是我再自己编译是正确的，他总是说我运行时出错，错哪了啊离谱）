@@ -1,0 +1,85 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+long trans_ten(char number[], int len, int raw_base)
+{
+	int i;
+	long sum_ten=0;
+	int digit=0;
+	for (i = len-1; i >=0; i--)
+	{
+		if (number[i] >= '0' && number[i] <= '9')
+		{
+			sum_ten += (number[i] - '0') * pow(raw_base, digit);
+		}
+		else if (number[i] >= 'A' && number[i] <= 'F')
+		{
+			sum_ten += (number[i] - 'A'+10) * pow(raw_base, digit);
+		}
+		digit++;
+	}
+	return sum_ten;
+}
+
+int getresult(char* p, int trans_base,long sum_ten)
+{
+	int i;
+	for (i = 0; sum_ten != 0; i++)
+	{
+		char x;
+		x = sum_ten % trans_base;
+		if (x >= 0 && x <= 9)
+		{
+			x = x + '0';
+		}
+		else
+		{
+			x = x - 10 + 'A';
+		}
+		*(p + i) = x;
+		sum_ten /= trans_base;
+	}
+	*(p + i) = '\0';
+	return i;
+}
+int main()
+{
+	char number[8];
+	int raw_base;
+	int trans_base;
+	while (scanf("%s%d%d", number, &raw_base, &trans_base)!=EOF)
+	{
+		int len;
+		len = strlen(number);
+		long sum_ten;
+		sum_ten = trans_ten(number, len, raw_base);
+		char result[8];
+		char* pch = result;
+		int m;
+		m = getresult(pch, trans_base, sum_ten);
+		if (m > 7)
+		{
+			printf("  ERROR\n");
+		}
+		else
+		{
+			int n;
+			n = 7 - m;
+			for (; n >= 1; n--)
+			{
+				printf(" ");
+			}
+			int j;
+			for (j = m-1; j >= 0; j--)
+			{
+				printf("%c", *(pch + j));
+			}
+			printf("\n");
+		}
+		
+
+	}
+	return 0;
+}
