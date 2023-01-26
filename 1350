@@ -1,0 +1,46 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+#define N 101
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while (t--)
+	{
+		int n;
+		scanf("%d", &n);
+		int cell[N];
+		memset(cell, 0, sizeof(cell));
+		int i;
+		int j;
+		for (i = 2; i <= n; i++)
+		{
+			for (j = i; j <= n; j++)
+			{
+				if (j % i == 0)
+				{
+					if (cell[j] == 0)
+					{
+						cell[j] = 1;
+					}
+					else
+					{
+						cell[j] = 0;
+					}
+				}
+			}
+		}
+		int sum = 0;
+		for (i = 1; i <= n; i++)
+		{
+			if (cell[i] == 0)
+			{
+				sum++;
+			}
+
+		}
+		printf("%d\n", sum);
+	}
+	return 0;
+}
