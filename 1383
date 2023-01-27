@@ -1,0 +1,29 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+int main()
+{
+	int d;
+	scanf("%d", &d);
+	while (d--)
+	{
+		int n;
+		scanf("%d", &n);
+		int i;
+		for (i = 0; n != 0; i++)
+		{
+			int p;
+			p = n % 2;
+			if (p == 1 && n / 2 != 0)
+			{
+				printf("%d ", i);
+			}
+			else if (p == 1 && n / 2 == 0)
+			{
+				printf("%d\n", i);
+			}
+			n = n / 2;
+		}
+	}
+	return 0;
+}
