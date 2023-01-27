@@ -1,0 +1,44 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+#define N 30
+int main()
+{
+	int a[N+1];
+	int n;
+	while (scanf("%d", &n) && n != 0)
+	{
+		int i;
+		for (i = 1; i <= n; i++)
+		{
+			scanf("%d", &a[i]);
+		}
+		int p, b, c;
+		int flag = 0;
+		for (p = 1; p <= n; p++)
+		{
+			int sum1 = 0;
+			int sum2 = 0;
+			for (b = 1; b <= p; b++)
+			{
+				sum1 += a[b];
+			}
+			for (c = n; c > p; c--)
+			{
+				sum2 += a[c];
+			}
+			if (sum1 == sum2)
+			{
+				printf("Sam stops at position %d and Ella stops at position %d.\n", b-1, c+1);
+				flag = 1;
+			}
+
+		}
+		if (flag == 0)
+		{
+			printf("No equal partitioning.\n");
+		}
+		
+	}
+	return 0;
+}
