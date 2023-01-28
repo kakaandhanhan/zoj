@@ -1,0 +1,25 @@
+# zoj
+因为杭电oj打不开了，估计是要用vpn了，所以被迫做zoj了
+#include <stdio.h>
+int main()
+{
+	int n, u, d;
+	while (scanf("%d %d %d", &n, &u, &d) && n != 0)
+	{
+		int sum = 0;
+		int time = 0;
+		while (sum < n)
+		{
+			sum += u;
+			time++;
+			if (sum >= n)
+			{
+				break;
+			}
+			sum -= d;
+			time++;
+		}
+		printf("%d\n", time);
+	}
+	return 0;
+}
